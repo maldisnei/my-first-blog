@@ -1,0 +1,45 @@
+
+.content {
+
+	margin: 100px 100px 100px 20px;
+
+}
+
+
+.post-form textarea, .post-form input {
+	width: 100%;
+}
+
+#titulo {
+	font-size: 30px;
+}
+span {
+	color: green;
+}
+.date {
+	float: right;
+	color: #828282;
+}
+
+.post {
+	margin-bottom: 70px;
+}
+h1, h2, h3, h4 {
+	font-family: 'Lobster',cursive;
+}
+form {
+	margin: 100px 100px 100px 20px;
+}
+.error {
+	margin:120px 120px 100px 25px;
+}	
+
+
+.comment {
+	margin: 20px 0px 20px 20px;
+
+}
+.tabela {
+	margin-left: 40px;
+	position: fixed;
+}	

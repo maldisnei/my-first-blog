@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+<div class="content">
+	{% block content %}
+
+	<div class="content container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				{% for post in posts %}
+					
+					<div class="post">
+						<div class="date">
+							<p>published: {{ post.published_data }}</p>
+						</div>
+						<h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</h1></a>
+						
+						<p>{{ post.texto|linebreaksbr }}</p>
+						<a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+					</div>
+				{% endfor %}
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+
+<div id="main">
+	{% block content %}
+		<div class="content container-fluid">
+			<div class="row">
+				<div class="col-md-8">
+					{% if user.is_authenticated %}
+					 <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+					<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon	glyphicon-remove"></span></a>
+					 {% elif  post.published_data %}
+					 <div class="post">
+						<div class="data">
+							<p>published: {{ post.published_data }}</p>
+						</div>
+					 {% else %}
+						<a class="btn btn-default" href="{% url 'blog.views.post_publish' pk=post.pk %}">publish</a>
+					 {% endif %}
+						<h1><a href="#">{{ post.title }}</h1></a>
+						<p>{{ post.texto|linebreaksbr }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+</div>
+<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Adicionar comentário</a>
+<hr>
+		<div class="row">
+			<div class="col-md-8">
+				{% for comment in post.comments.all %}
+					{% if user.is_authenticated or comment.approved_comment %}
+						<div class="comment">
+							<div class="data">
+								{{ comment.created_data }}
+									{% if not comment.approved_comment %}
+										<a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+										<a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+									{% endif %}	
+							</div>
+							<strong>{{ comment.author }}</strong>
+							<p>{{ comment.text|linebreaks }}</p>
+						</div>
+					{% endif %}
+{% empty %}
+	<p>Ainda não há comentarios aqui :(</p>
+{% endfor %}
+			</div>
+	</div>
+{% endblock content %}

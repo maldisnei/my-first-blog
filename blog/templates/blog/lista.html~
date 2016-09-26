@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+<div class=content>
+	{% block content %}
+
+	<div class="conteiner-fluid">
+	
+			<div class="row">
+				<div class="col-md-8">
+					{% for post in poste %}
+
+						<h1><a href="#">{{ post.title }}</h1></a>
+						<p>published: {{ post.published_data }}</p>
+						<p>{{ post.text|linebreaksbr }}</p>
+					{% endfor %}
+
+				</div>
+		</div>
+</div>
+				
+
+
+
+
+
+
+
+{% endblock content %}
